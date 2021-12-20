@@ -6,10 +6,14 @@ import locatePt from '@angular/common/locales/pt'
 registerLocaleData(locatePt, 'pt')
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule
