@@ -5,6 +5,7 @@ import { catchError, elementAt, map, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 import { ErrorHandlerDefault } from '../app.error-handler';
 import { Reviews } from '../restaurant-detail/reviews/reviews.model';
+import { MenuItem } from '../restaurant-detail/menu-item/menu-item.model';
 @Injectable()
 export class RestaurantsService {
   restaurantsUrl = `${MEAT_API}/restaurants`
@@ -35,9 +36,20 @@ export class RestaurantsService {
    */
   public getRestaurantReviewsById(id:string): Observable<Reviews[]> {
     const _url = `${this.restaurantsUrl}/${id}/reviews`
+    // TODO: simplificar
     let response:Observable<Reviews[]> = this.http.get<Reviews[]>(_url)
     return response
     .pipe(tap(_ => console.log(_)))
     .pipe(catchError(ErrorHandlerDefault.handleHttpErrorResponse))
+  }
+
+  /**
+   * getMenuOfRestaurant
+   */
+  public getMenuOfRestaurant(id: string): Observable<MenuItem[]> {
+    const _url = `${this.restaurantsUrl}/${id}/menu`
+    return this.http.get<MenuItem[]>(_url)
+    .pipe(tap(_ => console.log(_)))
+    .pipe(catchError(ErrorHandlerDefault.handleHttpErrorResponse))        
   }
 }
