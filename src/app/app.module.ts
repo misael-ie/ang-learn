@@ -24,6 +24,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
 import { OrderComponent } from './order/order.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [	
@@ -44,7 +45,8 @@ import { OrderComponent } from './order/order.component';
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
-    RouterTestingModule
+    RouterTestingModule,
+    FormsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
