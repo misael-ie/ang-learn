@@ -3,7 +3,7 @@
   <restaurant-detail-menu-item 
     *ngFor="let item of menu | async as list" 
     [menuItem]="item"
-    (add)="addMenuItem(item)">
+    (add)="shoppingCart.addItem(item)">
 
   </restaurant-detail-menu-item>
 
@@ -12,7 +12,9 @@
 </div>
 
 <div class="col-md-3 col-xs-12">
-    <restaurant-detail-shopping-cart></restaurant-detail-shopping-cart>
+    <restaurant-detail-shopping-cart 
+      #shoppingCart
+    ></restaurant-detail-shopping-cart>
 
 </div>
 <!-- FIM DO MENU -->
