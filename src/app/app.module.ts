@@ -22,6 +22,7 @@ import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
+import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
-    {provide: RestaurantsService}
+    {provide: RestaurantsService},
+    {provide: ShoppingCartService}
   ],
   bootstrap: [AppComponent]
 })
