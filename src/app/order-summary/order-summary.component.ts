@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSummaryComponent implements OnInit {
 
+  usrExp!:number
+
+  public orderUXRated(rated:number) {
+    console.log(`UX rate: ${rated}`);
+    this.usrExp = rated
+  }
+  
   constructor() { }
 
   ngOnInit() {

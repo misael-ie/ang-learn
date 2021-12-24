@@ -3,12 +3,32 @@
   </section>
 
   <section class="content">
-    <div class="jumbotron">
-      <h2>Pedido Conluído</h2>
-      <p>Seu pedido foi recebido pelo restaurante. Prepare a mesa que a comida está chegando!</p>
-      <p><b>Avalie</b> sua experiência:</p>
-      <p><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></p>
-    </div>
+    <div  class="jumbotron">
+        <h2>Pedido Conluído</h2>
+        <p>Seu pedido foi recebido pelo restaurante. Prepare a mesa que a comida está chegando! :)</p>
+
+        <div [hidden]="usrExp">
+        <p><b>Avalie</b> sua experiência:</p>
+        <p>
+          <!-- estrelas -->
+          <shared-analytics-ux-rating (rated)="orderUXRated($event)">   
+          </shared-analytics-ux-rating></p>
+
+        </div>
+        <div>
+          <p [hidden]="!usrExp" class="text-center">
+            Obrigado pela sua avaliação!
+            </p>
+        </div>
+          
+          <!-- TODO: DESAFIO: Implementar UI de núvem de palavras (ex.: Coursera) -->
+          <!-- <div class="col-sm-12 col-xs-6">
+            <shared-validators-forms-input-container label="test" successMessage="Ok">
+              <input class="form-control" name="optionalAddress" ngModel autocomplete="off" type="text"
+                placeholder="Deixe sua opinião">
+            </shared-validators-forms-input-container>
+          </div>         -->
+      </div>
 
   </section>
   <!-- FIM DO CONTEUDO -->
