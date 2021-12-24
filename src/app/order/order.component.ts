@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartItem } from '../restaurant-detail/shopping-cart/shopping-cart.model';
 import { RadioOption } from '../shared/validators/forms/radio/radio-option.model';
 import { Order, OrderItem } from './order.module';
@@ -39,7 +40,8 @@ export class OrderComponent implements OnInit {
   ]
 
   constructor(
-    private _orderService: OrderService
+    private _orderService: OrderService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -49,25 +51,25 @@ export class OrderComponent implements OnInit {
     return this._orderService.cartItems()
   }
 
-  
-  increaseQuantity(item: CartItem){
+
+  increaseQuantity(item: CartItem) {
     this._orderService.increaseQuantity(item)
   }
 
-  decreaseQuantity(item: CartItem){
-    this._orderService.decreaseQuantity(item) 
+  decreaseQuantity(item: CartItem) {
+    this._orderService.decreaseQuantity(item)
   }
 
-  removeItem(item: CartItem){
+  removeItem(item: CartItem) {
     this._orderService.removeItem(item)
   }
 
-  itemsCost(): number{
+  itemsCost(): number {
     return this._orderService.itemsCost()
   }
 
-  deliveryCost(): number{
-    let _cartItemsExists = this.cartItems().length!==0
+  deliveryCost(): number {
+    let _cartItemsExists = this.cartItems().length !== 0
     if (_cartItemsExists) {
       return this._defaultDeliveryCost
     } else {
@@ -75,21 +77,22 @@ export class OrderComponent implements OnInit {
     }
   }
 
-  _cartItemsToOrderItems(_cartItems:CartItem){
+  _cartItemsToOrderItems(_cartItems: CartItem) {
     return new OrderItem(_cartItems.quantity, _cartItems.menuItem.id)
   }
 
-  checkOrder(order: Order){
+  checkOrder(order: Order) {
     order.orderItems = this.cartItems()
-      .map((_cartItems)=>this._cartItemsToOrderItems(_cartItems))
+      .map((_cartItems) => this._cartItemsToOrderItems(_cartItems))
 
     this._orderService.checkOrder(order)
-    .subscribe(
-      (orderId:string) => {
-        console.log(`Compra concluída: ${orderId}`);
-        this._orderService.clearCart()
-      }
-    )
+      .subscribe(
+        (orderId: string) => {
+          this._router.navigate(['/order-summary'])
+          console.log(`Compra concluída: ${orderId}`);
+          this._orderService.clearCart()
+        }
+      )
     console.log(order)
-  }  
+  }
 }
