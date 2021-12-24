@@ -55,7 +55,12 @@
         <div class="col-xs-12">
           <p class="lead">Itens do Pedido:</p>
         </div>
-        <app-order-items></app-order-items>
+        <app-order-items
+          [items]="cartItems()"
+          (_increaseQuantity)="increaseQuantity($event)"
+          (_decreaseQuantity)="decreaseQuantity($event)"
+          (_removeItem)="increaseQuantity($event)"
+        ></app-order-items>
         <!-- /.col -->
       </div>
       <!-- /.row -->

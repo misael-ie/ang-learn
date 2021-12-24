@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { InputComponent } from './shared/validators/forms/input/input.component';
 import { RadioComponent } from './shared/validators/forms/radio/radio.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { OrderService } from './order/order.service';
 
 @NgModule({
   declarations: [	
@@ -57,7 +58,8 @@ import { OrderItemsComponent } from './order/order-items/order-items.component';
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
     {provide: RestaurantsService},
-    {provide: ShoppingCartService}
+    {provide: ShoppingCartService},
+    {provide: OrderService}
   ],
   bootstrap: [AppComponent]
 })

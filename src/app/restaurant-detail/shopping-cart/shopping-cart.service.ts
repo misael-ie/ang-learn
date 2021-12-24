@@ -16,7 +16,7 @@ export class ShoppingCartService {
             (cartItem) => cartItem.menuItem.id === item.id
         )
         if (itemAlreadyAdded) {
-            itemAlreadyAdded.quantity++
+            this.increaseQuantity(itemAlreadyAdded)
         } else {
             this.items.push(new CartItem(item))
         }
@@ -38,5 +38,17 @@ export class ShoppingCartService {
             (prev, value) => prev+value,
             0 // TODO: entender essa implementação
         )
+    }
+
+    increaseQuantity(item:CartItem){
+        item.quantity++
+    }
+
+    decreaseQuantity(item:CartItem){
+        item.quantity--
+        let _quantityZero = item.quantity === 0
+        if (_quantityZero) {
+            this.removeItem(item)
+        }
     }
 }
