@@ -27,6 +27,7 @@ import { OrderComponent } from './order/order.component';
 import { FormsModule } from '@angular/forms';
 import { InputComponent } from './shared/validators/forms/input/input.component';
 import { RadioComponent } from './shared/validators/forms/radio/radio.component';
+import { OrderItemsComponent } from './order/order-items/order-items.component';
 
 @NgModule({
   declarations: [	
@@ -43,7 +44,8 @@ import { RadioComponent } from './shared/validators/forms/radio/radio.component'
     ReviewsComponent,
     OrderComponent,
     InputComponent,
-    RadioComponent
+    RadioComponent,
+    OrderItemsComponent
    ],
   imports: [
     BrowserModule,
