@@ -41,7 +41,7 @@
         </div>
         <div class="col-sm-3 col-xs-6">
           <shared-validators-forms-input-container label="Complemento" successMessage="Ok">
-            <input class="form-control" name="optional" ngModel autocomplete="off" type="text"
+            <input class="form-control" name="optionalAddress" ngModel autocomplete="off" type="text"
               placeholder="Complemento">
           </shared-validators-forms-input-container>
 
@@ -59,7 +59,7 @@
           [items]="cartItems()"
           (_increaseQuantity)="increaseQuantity($event)"
           (_decreaseQuantity)="decreaseQuantity($event)"
-          (_removeItem)="increaseQuantity($event)"
+          (_removeItem)="removeItem($event)"
         ></app-order-items>
         <!-- /.col -->
       </div>
@@ -76,6 +76,7 @@
               [options]="paymentOptions"
               name="paymentOption"
               ngModel
+              required
             ></shared-validators-forms-radio-container>
           </div>
 
@@ -84,24 +85,10 @@
         <div class="col-sm-6 col-xs-12">
           <p class="lead">Frete e Total:</p>
 
-          <div class="table-responsive">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <th style="width:50%">Itens:</th>
-                  <td class="text-right">R$ 20,00</td>
-                </tr>
-                <tr>
-                  <th>Frete:</th>
-                  <td class="text-right">R$ 8,00</td>
-                </tr>
-                <tr>
-                  <th>Total:</th>
-                  <td class="text-right">R$ 28,00</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <app-delivery-costs
+          [_deliveryCost]="deliveryCost()"
+          [_itemsCost]="itemsCost()"
+          ></app-delivery-costs>
         </div>
         <!-- /.col -->
       </div>
@@ -110,7 +97,9 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <button class="btn btn-success pull-right" [disabled]="!_form.valid">
+        <button class="btn btn-success pull-right" 
+          [disabled]="!_form.valid || cartItems().length === 0"
+          (click)="checkOrder(_form.value)">
           <i class="fa fa-credit-card"></i> Concluir Pedido
         </button>
       </div>
