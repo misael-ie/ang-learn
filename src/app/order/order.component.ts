@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartItem } from '../restaurant-detail/shopping-cart/shopping-cart.model';
 import { RadioOption } from '../shared/validators/forms/radio/radio-option.model';
@@ -14,6 +14,10 @@ import { OrderService } from './order.service';
 export class OrderComponent implements OnInit {
 
   orderForm!: FormGroup
+
+  // TODO: change this patterns to a specific component @ shared/...
+  private _emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+  private _numberPattern = /^[0-9]*$/
 
   // TODO: change to a api caller
   private _defaultDeliveryCost: number = 8
@@ -51,13 +55,30 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     // init the formGroup
     this.orderForm = this._formBuilder.group({
-      name:this._formBuilder.control(''),
-      email: this._formBuilder.control(''),
-      emailConfirmation: this._formBuilder.control(''),
-      address: this._formBuilder.control(''),
-      number: this._formBuilder.control(''),
+      name: this._formBuilder.control('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      email: this._formBuilder.control('', [
+        Validators.required,
+        Validators.pattern(this._emailPattern)
+      ]),
+      emailConfirmation: this._formBuilder.control('', [
+        Validators.required,
+        Validators.pattern(this._emailPattern)
+      ]),
+      address: this._formBuilder.control('', [
+        Validators.required,
+        Validators.minLength(5)
+      ]),
+      number: this._formBuilder.control('', [
+        Validators.required,
+        Validators.pattern(this._numberPattern)
+      ]),
       optionalAddress: this._formBuilder.control(''),
-      paymentOption: this._formBuilder.control('')
+      paymentOption: this._formBuilder.control('', [
+        Validators.required,
+      ]),
     })
   }
 

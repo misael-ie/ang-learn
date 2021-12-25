@@ -28,7 +28,7 @@
       <!-- NAME -->
       <div class="col-sm-4 col-xs-6">
         <shared-validators-forms-input-container label="Endereço" successMessage="Ok" errorMessage="Campo obrigatório">
-          <input class="form-control" formControlName="name"  autocomplete="off" placeholder="Nome">
+          <input class="form-control" formControlName="name"  type="text" autocomplete="disabled" placeholder="Nome">
         </shared-validators-forms-input-container>
       </div>
       <!-- /NAME -->
@@ -36,7 +36,7 @@
       <!-- EMAIL -->
       <div class="col-sm-4 col-xs-6">
         <shared-validators-forms-input-container label="Endereço" successMessage="Ok" errorMessage="E-mail inválido">
-          <input class="form-control" formControlName="email"  autocomplete="off"
+          <input class="form-control" formControlName="email"  type="text" autocomplete="disabled"
             placeholder="e-mail">
         </shared-validators-forms-input-container>
       </div>
@@ -45,7 +45,7 @@
       <!-- CONFIRMAÇÃO DE EMAIL -->
       <div class="col-sm-4 col-xs-6">
         <shared-validators-forms-input-container label="Endereço" successMessage="Ok" errorMessage="E-mail inválido">
-          <input class="form-control" formControlName="email"  autocomplete="off"
+          <input class="form-control" formControlName="emailConfirmation"  type="text" autocomplete="disabled"
             placeholder="e-mail">
         </shared-validators-forms-input-container>
       </div>      
@@ -63,7 +63,7 @@
           <!-- moved to shared/validators/forms/input -->
           <shared-validators-forms-input-container label="Endereço" successMessage="Ok"
             errorMessage="Campo obrigatório">
-            <input class="form-control" formControlName="address" autocomplete="off"
+            <input class="form-control" formControlName="address" autocomplete="disabled" type="text"
               placeholder="Endereço">
           </shared-validators-forms-input-container>
         </div>
@@ -71,14 +71,14 @@
         <div class="col-sm-3 col-xs-6">
           <shared-validators-forms-input-container label="Número" successMessage="Ok"
             errorMessage="Obrigatório e somente números">
-            <input class="form-control" formControlName="number" autocomplete="off" type="text"
+            <input class="form-control" formControlName="number" autocomplete="disabled" type="text"
               placeholder="Número" pattern="^[0-9]+$">
           </shared-validators-forms-input-container>
 
         </div>
         <div class="col-sm-3 col-xs-6">
           <shared-validators-forms-input-container label="Complemento" successMessage="Ok">
-            <input class="form-control" formControlName="optionalAddress" autocomplete="off" type="text"
+            <input class="form-control" formControlName="optionalAddress" autocomplete="disabled" type="text"
               placeholder="Complemento">
           </shared-validators-forms-input-container>
 
