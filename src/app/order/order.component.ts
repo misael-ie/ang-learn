@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors }
 import { Router } from '@angular/router';
 import { CartItem } from '../restaurant-detail/shopping-cart/shopping-cart.model';
 import { RadioOption } from '../shared/validators/forms/radio/radio-option.model';
-import { Order, OrderItem } from './order.module';
+import { Order, OrderItem } from './order.model';
 import { OrderService } from './order.service';
 
 @Component({
