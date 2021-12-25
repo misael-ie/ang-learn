@@ -24,7 +24,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
 import { OrderComponent } from './order/order.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponent } from './shared/validators/forms/input/input.component';
 import { RadioComponent } from './shared/validators/forms/radio/radio.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
@@ -59,7 +59,8 @@ import { RatingComponent } from './shared/analytics/user-experience/rating/ratin
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
     RouterTestingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},

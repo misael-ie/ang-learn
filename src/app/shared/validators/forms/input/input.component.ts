@@ -1,4 +1,5 @@
 import { NgModel } from '@angular/forms';
+import { FormControlName } from '@angular/forms';
 import { 
   Component, 
   OnInit, 
@@ -20,6 +21,7 @@ export class InputComponent implements OnInit, AfterContentInit {
   input:any
 
   @ContentChild(NgModel) model!: NgModel
+  @ContentChild(FormControlName) control!: FormControlName
 
   constructor() { }
 
@@ -27,11 +29,10 @@ export class InputComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-      this.input = this.model
+      this.input = this.model || this.control // REVIEW: Seleciona um objeto ou outro (começando da direita para a esquerda)
 
-      // check if there is defined model
       if (this.input === undefined) {
-        throw new Error("Necessário diretiva ngModel");
+        throw new Error("Necessário diretiva ngModel ou FormControlName");
                
       }
   }

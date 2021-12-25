@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartItem } from '../restaurant-detail/shopping-cart/shopping-cart.model';
 import { RadioOption } from '../shared/validators/forms/radio/radio-option.model';
@@ -12,10 +13,12 @@ import { OrderService } from './order.service';
 })
 export class OrderComponent implements OnInit {
 
+  orderForm!: FormGroup
+
   // TODO: change to a api caller
   private _defaultDeliveryCost: number = 8
 
-  // TODO: improve with a domain class
+  // TODO: improve with a domain class and API caller
   paymentOptions: RadioOption[] = [
     {
       label: 'Dinheiro',
@@ -41,10 +44,21 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private _orderService: OrderService,
-    private _router: Router
+    private _router: Router,
+    private _formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    // init the formGroup
+    this.orderForm = this._formBuilder.group({
+      name:this._formBuilder.control(''),
+      email: this._formBuilder.control(''),
+      emailConfirmation: this._formBuilder.control(''),
+      address: this._formBuilder.control(''),
+      number: this._formBuilder.control(''),
+      optionalAddress: this._formBuilder.control(''),
+      paymentOption: this._formBuilder.control('')
+    })
   }
 
   cartItems(): CartItem[] {
