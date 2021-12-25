@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartItem } from '../restaurant-detail/shopping-cart/shopping-cart.model';
 import { RadioOption } from '../shared/validators/forms/radio/radio-option.model';
@@ -18,6 +18,18 @@ export class OrderComponent implements OnInit {
   // TODO: change this patterns to a specific component @ shared/...
   private _emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   private _numberPattern = /^[0-9]*$/
+  static u_emailConfirmation(group: AbstractControl): ValidationErrors | null {
+    const _email = group.get('email')
+    const _emailConfirmation = group.get('emailConfirmation')
+    const _isUndefined = (!_email || !_emailConfirmation)
+    const _isDifferent = (_email?.value !== _emailConfirmation?.value)
+    const _invalid =  _isUndefined && _isDifferent
+    if (_invalid) {
+      return {emailsNotMatch:true} // emails undefined && diferentes
+    }
+    return null // emails defined && iguais
+  }
+
 
   // TODO: change to a api caller
   private _defaultDeliveryCost: number = 8
@@ -77,9 +89,10 @@ export class OrderComponent implements OnInit {
       ]),
       optionalAddress: this._formBuilder.control(''),
       paymentOption: this._formBuilder.control('', [
-        Validators.required,
-      ]),
-    })
+        Validators.required])
+    },
+      { validator: OrderComponent.u_emailConfirmation }
+    )
   }
 
   cartItems(): CartItem[] {
