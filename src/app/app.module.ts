@@ -23,14 +23,17 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
 import { OrderComponent } from './order/order.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputComponent } from './shared/validators/forms/input/input.component';
-import { RadioComponent } from './shared/validators/forms/radio/radio.component';
 import { OrderItemsComponent } from './order/order-items/order-items.component';
 import { OrderService } from './order/order.service';
 import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
-import { RatingComponent } from './shared/analytics/user-experience/rating/rating.component';
+import { SharedModule } from './shared/shared.module';
+
+// @SharedModule
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { InputComponent } from './shared/validators/forms/input/input.component';
+// import { RadioComponent } from './shared/validators/forms/radio/radio.component';
+// import { RatingComponent } from './shared/analytics/user-experience/rating/rating.component';
 
 @NgModule({
   declarations: [		
@@ -45,20 +48,21 @@ import { RatingComponent } from './shared/analytics/user-experience/rating/ratin
     MenuItemComponent,
     ReviewsComponent,
     OrderComponent,
-    InputComponent,
-    RadioComponent,
     OrderItemsComponent,
     DeliveryCostsComponent,
     OrderSummaryComponent,
-    RatingComponent
+    // InputComponent,        @SharedModule
+    // RadioComponent,        @SharedModule
+    // RatingComponent        @SharedModule
    ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
     RouterTestingModule,
-    FormsModule,
-    ReactiveFormsModule
+    SharedModule
+    // FormsModule,           @SharedModule
+    // ReactiveFormsModule    @SharedModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
