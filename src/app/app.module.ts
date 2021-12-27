@@ -13,7 +13,6 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component';
-import { RestaurantsService } from './restaurants/restaurants.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shopping-cart.component';
@@ -21,10 +20,9 @@ import { MenuComponent } from './restaurant-detail/menu/menu.component';
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
-import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
-import { OrderService } from './order/order.service';
 import { SharedModule } from './shared/shared.module';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+import { CoreModule } from './core/core.module';
 
 // @SharedModule
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -36,6 +34,11 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
 // import { OrderComponent } from './order/order.component';
 // import { OrderItemsComponent } from './order/order-items/order-items.component';
 // import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
+
+// @CoreModule
+// import { RestaurantsService } from './restaurants/restaurants.service';
+// import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
+// import { OrderService } from './order/order.service';
 
 @NgModule({
   declarations: [		
@@ -62,15 +65,16 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
     RouterTestingModule,
-    SharedModule
+    SharedModule,
+    CoreModule
     // FormsModule,           @SharedModule
     // ReactiveFormsModule    @SharedModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
-    {provide: RestaurantsService},
-    {provide: ShoppingCartService},
-    {provide: OrderService}
+    // {provide: RestaurantsService},     @CoreModule'
+    // {provide: ShoppingCartService},    @CoreModule'
+    // {provide: OrderService}            @CoreModule'
   ],
   bootstrap: [AppComponent]
 })
