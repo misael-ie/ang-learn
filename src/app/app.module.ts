@@ -23,6 +23,7 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 import { SharedModule } from './shared/shared.module';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { CoreModule } from './core/core.module';
+import { PreloadAllModules } from '@angular/router';
 
 // @SharedModule
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -62,7 +63,7 @@ import { CoreModule } from './core/core.module';
    ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules}),
     HttpClientModule,
     RouterTestingModule,
     SharedModule,
