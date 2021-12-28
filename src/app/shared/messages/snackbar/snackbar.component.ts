@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { NotificationService } from '../notification.service';
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/observable/timer'
-import { timer } from 'rxjs';
+import { tap, timer } from 'rxjs';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-snackbar',
@@ -26,7 +25,7 @@ import { timer } from 'rxjs';
 })
 export class SnackbarComponent implements OnInit {
 
-  message: string = "Hello There"
+  message!: string
   snackVisibility: string = 'hidden'
 
   constructor(
@@ -34,16 +33,13 @@ export class SnackbarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._notificationService.notifier.subscribe(
-      receivedMessage => {
-        this.message = receivedMessage
-        this.snackVisibility = 'visible'
-        timer(3000) //TODO: melhorar o uso de timers para animações
-          .subscribe(timeout => this.snackVisibility = 'hidden')
-          
-      }
-    )
+    this._notificationService.notifier
+      .pipe(
+        tap(message => {
+          this.message = message
+          this.snackVisibility = 'visible'
+        }),
+        switchMap(message => timer(3000))
+      ).subscribe(timer=>this.snackVisibility = 'hidden')
   }
-
-
 }
