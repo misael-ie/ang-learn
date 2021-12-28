@@ -15,7 +15,8 @@
                 <div class="table-responsive" *ngIf="getItems().length">
                     <table class="table">
                       <tbody>
-                      <tr *ngFor="let item of getItems()">
+                        <!-- associar com a trigger de animaçao -->
+                      <tr *ngFor="let item of getItems()" [@rowAnimation]="rowState"> 
                         <th>({{item.quantity}}x) {{item.menuItem.name}}</th>
 
                         <td class="text-right">{{item.menuItem.price | currency: "BRL": "symbol"}}</td>
