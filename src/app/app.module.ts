@@ -24,6 +24,8 @@ import { SharedModule } from './shared/shared.module';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { CoreModule } from './core/core.module';
 import { PreloadAllModules } from '@angular/router';
+// import { BrowserModule } from '@angular/platform-browser'; // @https://angular.io/guide/animations
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // @SharedModule
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -67,7 +69,8 @@ import { PreloadAllModules } from '@angular/router';
     HttpClientModule,
     RouterTestingModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    BrowserAnimationsModule
     // FormsModule,           @SharedModule
     // ReactiveFormsModule    @SharedModule
   ],
