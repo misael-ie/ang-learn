@@ -1,11 +1,16 @@
+import { Injectable } from "@angular/core"
+import { NotificationService } from "src/app/shared/messages/notification.service"
 import { MenuItem } from "../menu-item/menu-item.model"
 import { CartItem } from "./shopping-cart.model"
 
+@Injectable()
 export class ShoppingCartService {
 
     items:CartItem[] = []
 
-    constructor(){}
+    constructor(
+        private _notificationService: NotificationService
+    ){}
 
     clear(){
         this.items = []
@@ -20,6 +25,7 @@ export class ShoppingCartService {
         } else {
             this.items.push(new CartItem(item))
         }
+        this._notificationService.notify(`Você adicionou o item ${item.name}`)
 
     }
 
@@ -28,6 +34,7 @@ export class ShoppingCartService {
             this.items.indexOf(item), //TODO: entender splice e indexOf
             1
         )
+        this._notificationService.notify(`Você removeu o item ${item.menuItem.name}`)
     }
 
     total():number{
