@@ -6,6 +6,7 @@ import { RestaurantsComponent } from "./restaurants/restaurants.component"
 import { MenuComponent } from "./restaurant-detail/menu/menu.component"
 // import { OrderComponent } from "./order/order.component"
 import { OrderSummaryComponent } from "./order-summary/order-summary.component"
+import { NotFoundComponent } from "./not-found/not-found.component"
 
 export const ROUTES: Routes = [
     { path: '', component: HomeComponent },
@@ -30,4 +31,5 @@ export const ROUTES: Routes = [
         path: 'order',
         loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
     },
+    { path: '**', component: NotFoundComponent }, // regra de 404 tem que ficar no final 
 ]

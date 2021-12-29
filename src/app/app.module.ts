@@ -42,9 +42,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { RestaurantsService } from './restaurants/restaurants.service';
 // import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
 // import { OrderService } from './order/order.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent,
     HeaderComponent,
     HomeComponent,
@@ -61,7 +62,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     // RatingComponent          @SharedModule
     // OrderComponent,          @OrderModule
     // OrderItemsComponent,     @OrderModule
-    // DeliveryCostsComponent,  @OrderModule
+,    // DeliveryCostsComponent,  @OrderModule
+      NotFoundComponent
    ],
   imports: [
     BrowserModule,
