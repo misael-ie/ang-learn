@@ -24,6 +24,9 @@ import { PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+// packages to serve the angular app with a http server
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
 // @https://angular.io/guide/animations
 // import { BrowserModule } from '@angular/platform-browser';
 
@@ -78,6 +81,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
+    {provide: LocationStrategy, useClass: HashLocationStrategy}, 
     // {provide: RestaurantsService},     @CoreModule'
     // {provide: ShoppingCartService},    @CoreModule'
     // {provide: OrderService}            @CoreModule'
