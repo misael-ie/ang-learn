@@ -1,12 +1,9 @@
 import { registerLocaleData } from '@angular/common';
+import locatePt from '@angular/common/locales/pt'
+registerLocaleData(locatePt, 'pt')
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import locatePt from '@angular/common/locales/pt'
-
-registerLocaleData(locatePt, 'pt')
-
 import { ROUTES } from './app.route';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -24,8 +21,11 @@ import { SharedModule } from './shared/shared.module';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { CoreModule } from './core/core.module';
 import { PreloadAllModules } from '@angular/router';
-// import { BrowserModule } from '@angular/platform-browser'; // @https://angular.io/guide/animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+// @https://angular.io/guide/animations
+// import { BrowserModule } from '@angular/platform-browser';
 
 // @SharedModule
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,7 +42,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { RestaurantsService } from './restaurants/restaurants.service';
 // import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
 // import { OrderService } from './order/order.service';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [			
@@ -56,14 +55,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MenuComponent,
     MenuItemComponent,
     ReviewsComponent,
-    OrderSummaryComponent
-    // InputComponent,          @SharedModule
-    // RadioComponent,          @SharedModule
-    // RatingComponent          @SharedModule
-    // OrderComponent,          @OrderModule
-    // OrderItemsComponent,     @OrderModule
-,    // DeliveryCostsComponent,  @OrderModule
-      NotFoundComponent
+    OrderSummaryComponent,
+    NotFoundComponent
+    // InputComponent,                    @SharedModule
+    // RadioComponent,                    @SharedModule
+    // RatingComponent                    @SharedModule
+    // OrderComponent,                    @OrderModule
+    // OrderItemsComponent,               @OrderModule
+,   // DeliveryCostsComponent,            @OrderModule
+
    ],
   imports: [
     BrowserModule,
@@ -73,8 +73,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SharedModule,
     CoreModule,
     BrowserAnimationsModule
-    // FormsModule,           @SharedModule
-    // ReactiveFormsModule    @SharedModule
+    // FormsModule,                       @SharedModule
+    // ReactiveFormsModule                @SharedModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
