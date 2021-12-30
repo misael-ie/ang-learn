@@ -1,3 +1,3 @@
-import { environment } from "src/environments/environment"
+import { environment as env } from "src/environments/environment"
 
-export const MEAT_API = environment.api
+export const MEAT_API = `https://${env.apiAddress}:${env.apiPort}`
