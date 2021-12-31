@@ -10,19 +10,6 @@ import { LoginService } from '../security/login/login.service';
 
 @Injectable()
 export class OrderService {
-    // //FIXME: é realmente necessário
-    // private _headerBuilder(): HttpHeaders{
-    //     const _header:HttpHeaders = new HttpHeaders()
-    //     _header.append('Content-Type', 'application/json')
-    //     // add a auth header
-    //     if (this._loginService.isLoggedIn()) {
-    //         console.log(`isLoggedIn: ${this._loginService.isLoggedIn()}`);
-    //         _header.append('Authorization', `Bearer ${this._loginService.user.accessToken}`)
-    //         console.log(`Token: ${this._loginService.user.accessToken}`);
-    //     }
-    //     console.log(`HEADER: ${JSON.stringify(_header)}`);
-    //     return _header
-    // }    
 
     constructor(
         private _cartService: ShoppingCartService,
@@ -53,15 +40,7 @@ export class OrderService {
     checkOrder(order: Order): Observable<string> {
         const _url:string = `${MEAT_API}/orders`
         const _body:string = JSON.stringify(order)
-        let _headers = new HttpHeaders()
-        if (this._loginService.isLoggedIn()) {
-            _headers = _headers.append("Authorization", `Bearer ${this._loginService.user.accessToken}`)
-        }
-        _headers = _headers.append("Content-Type", "application/json")
-        console.log(JSON.stringify(_headers));
-        
-        //FIXME: refatorar para incluir Order como tipo de retorno
-        return this._http.post<string>(_url, _body, {headers:_headers})
+        return this._http.post<string>(_url, _body)
             .pipe(map((response)=>JSON.stringify(response))) 
             .pipe(tap((response)=>console.log(response)))
             .pipe(catchError(ErrorHandlerDefault.handleHttpErrorResponse))  

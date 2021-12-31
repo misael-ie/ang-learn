@@ -20,7 +20,6 @@ export class LoginService {
         ).subscribe(
             (navEnd: any) => {
                 this._navigationEnd = navEnd
-                console.log(this._navigationEnd)
             }
         )
     }

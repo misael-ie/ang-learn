@@ -23,13 +23,9 @@ export class LoggedInGuard implements CanLoad, CanActivate {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        console.log(`CanActivate`);
-        console.log(route);
         return this.isAuthenticated(route.routeConfig?.path)
     }
     canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        console.log(`CanLoad`);
-        console.log(route);
         return this.isAuthenticated(route.path)
     }
 }
