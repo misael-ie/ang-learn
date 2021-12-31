@@ -26,6 +26,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 // packages to serve the angular app with a http server
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LoginComponent } from './security/login/login.component';
+import { UserDetailComponent } from './header/user-detail/user-detail.component';
 
 // @https://angular.io/guide/animations
 // import { BrowserModule } from '@angular/platform-browser';
@@ -59,7 +61,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     MenuItemComponent,
     ReviewsComponent,
     OrderSummaryComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoginComponent,
+    UserDetailComponent
     // InputComponent,                    @SharedModule
     // RadioComponent,                    @SharedModule
     // RatingComponent                    @SharedModule
