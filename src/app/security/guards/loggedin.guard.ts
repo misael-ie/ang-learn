@@ -6,7 +6,7 @@ import { LoginService } from "../login/login.service";
 
 
 @Injectable()
-export class LoggedInGuard implements CanLoad, CanActivate{
+export class LoggedInGuard implements CanLoad, CanActivate {
     constructor(
         private _loginService: LoginService,
         private _notificationService: NotificationService

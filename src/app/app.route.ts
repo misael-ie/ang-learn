@@ -9,6 +9,7 @@ import { OrderSummaryComponent } from "./order-summary/order-summary.component"
 import { NotFoundComponent } from "./not-found/not-found.component"
 import { LoginComponent } from "./security/login/login.component"
 import { LoggedInGuard } from "./security/guards/loggedin.guard"
+import { LeaveOrderPageGuard } from "./security/guards/leaveOrderPage.guard"
 
 export const ROUTES: Routes = [
     { path: '', component: HomeComponent },

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { CartItem } from '../restaurant-detail/shopping-cart/shopping-cart.model';
 import { RadioOption } from '../shared/validators/forms/radio/radio-option.model';
 import { Order, OrderItem } from './order.model';
@@ -23,9 +24,9 @@ export class OrderComponent implements OnInit {
     const _emailConfirmation = group.get('emailConfirmation')
     const _isUndefined = (!_email || !_emailConfirmation)
     const _isDifferent = (_email?.value !== _emailConfirmation?.value)
-    const _invalid =  _isUndefined && _isDifferent
+    const _invalid = _isUndefined && _isDifferent
     if (_invalid) {
-      return {emailsNotMatch:true} // emails undefined && diferentes
+      return { emailsNotMatch: true } // emails undefined && diferentes
     }
     return null // emails defined && iguais
   }
@@ -57,6 +58,8 @@ export class OrderComponent implements OnInit {
       value: 'REF'
     }
   ]
+
+  _orderId!: string
 
   constructor(
     private _orderService: OrderService,
@@ -134,13 +137,22 @@ export class OrderComponent implements OnInit {
       .map((_cartItems) => this._cartItemsToOrderItems(_cartItems))
 
     this._orderService.checkOrder(order)
+      .pipe(
+        tap(
+          (orderId: string) => {
+            this._orderId = orderId
+          }
+        )
+      )
       .subscribe(
         (orderId: string) => {
           this._router.navigate(['/order-summary'])
-          console.log(`Compra concluída: ${orderId}`);
           this._orderService.clearCart()
         }
       )
-    console.log(order)
+  }
+
+  isOrderCompleted():boolean {
+    return this._orderId !== undefined
   }
 }
