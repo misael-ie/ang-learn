@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import * as https from 'https'
 import { environment as env } from "../src/environments/environment"
 import { handleAuthentication } from './auth'
+import { handleAuthorization } from './authz'
 // import { Request, Response} from 'express'
 
 const server = jsonServer.create()
@@ -17,6 +18,7 @@ server.use(middlewares)
 server.use(jsonServer.bodyParser)
 
 server.post('/login', handleAuthentication)
+server.use('/orders', handleAuthorization)
 
 // Use default router
 server.use(router)
